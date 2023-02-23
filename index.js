@@ -21,7 +21,13 @@ app.get("/", function (req, res) {
 
 app.get("/api/:date?",(req,res)=>{
   date = req.params.date;
-  if(/\d{5,}/.test(date)){
+  if(date.length===0){
+    curr_date = new Date();
+    return res.json({
+      unix: curr_date.toValue(),
+      utc: curr_date.toUTCString()
+    });
+  }else if(/\d{5,}/.test(date)){
     datenum = parseInt(date);
     return res.json({
       unix: datenum,
