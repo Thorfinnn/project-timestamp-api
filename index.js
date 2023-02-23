@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 
 app.get("/api/:date?",(req,res)=>{
   date = req.params.date;
-  if(date.length===0){
+  if(date==="undefined"){
     curr_date = new Date();
     return res.json({
       unix: curr_date.toValue(),
