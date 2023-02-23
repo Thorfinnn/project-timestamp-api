@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 
 app.get("/api/:date?",(req,res)=>{
   date = req.params.date;
-  if(date.length>11){
+  if(/\d{5,}/.test(date)){
     datenum = parseInt(date);
     return res.json({
       unix: datenum,
@@ -29,7 +29,7 @@ app.get("/api/:date?",(req,res)=>{
     });
   }else{
     dateobject = new Date(date);
-    if(dateobject.toString!="Invalid Date"){
+    if(dateobject.toString() !="Invalid Date"){
       return res.json({
         unix: dateobject.valueOf(),
         utc: dateobject.toUTCString()
